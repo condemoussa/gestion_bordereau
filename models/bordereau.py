@@ -24,7 +24,7 @@ class FicheBordereau(models.Model):
         # Création de l'e-mail pour chaque utilisateur
         for user in users:
             mail_values = {
-                'subject': "Création de Bordereau d’envoi",
+                'subject': "Création de Bordereau d’envoie",
                 'body_html': f"""
                     <p>Bonjour M. {user.name},</p>
                     <p>Un nouveau bordereau a été créé : <strong>{self.name}</strong> par <strong>{self.create_uid.name}</strong>. 
