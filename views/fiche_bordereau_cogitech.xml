@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue Liste (Tree) -->
+    <record id="view_fiche_bordereau_tree" model="ir.ui.view">
+        <field name="name">FICHE DE BORDEREAU</field>
+        <field name="model">fiche.bordereau</field>
+        <field name="arch" type="xml">
+            <tree string="FICHE DE BORDEREAU">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="dat_bord"/>
+                <field name="state"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue Formulaire (Form) -->
+    <record id="view_fiche_bordereau_form" model="ir.ui.view">
+        <field name="name">FICHE DE BORDEREAU</field>
+        <field name="model">fiche.bordereau</field>
+        <field name="arch" type="xml">
+            <form string="FICHE DE BORDEREAU">
+                <header>
+                      <button
+                                  name="action_submit" type="object" string="Soumettre" class="oe_highlight"
+                                  states ="draft"
+                                  groups="ouverture_dossier.service_comptable_id"
+                       />
+
+                      <button
+                                 name="action_verify_controleur" type="object" string="Verification" class="oe_highlight"
+                                 states="verify"
+                                 groups="ouverture_dossier.service_directeur_financei_id"
+                       />
+                     <button
+                               name="action_verify_d_financier" type="object" string="Verification" class="oe_highlight"
+                                states="transfer,rejected"
+                                groups="ouverture_dossier.service_tresorerie_id"
+                       />
+                     <button
+                               name="action_verify_tresorerie" type="object" string="Verification" class="oe_highlight"
+                                states="transfere2"
+                       />
+                    <button
+                               name="action_autorisation_visa" type="object" string="Valider" class="oe_highlight"
+                                states="transfere3"
+                       />
+                     <button
+                               name="action_rejeter" type="object" string="rejetter" class="oe_highlight"
+                                states="verify,transfer,transfere2,transfere3"
+                                 groups="ouverture_dossier.direction_general_id,ouverture_dossier.service_directeur_financei_id,ouverture_dossier.service_tresorerie_id"
+                       />
+                     <field name="state" widget="statusbar" options="{'clickable': True}" />
+                 </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="dat_bord"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="piece_jointe"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action de Menu -->
+    <record id="action_fiche_bordereau" model="ir.actions.act_window">
+        <field name="name">FICHE DE BORDEREAU</field>
+        <field name="res_model">fiche.bordereau</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

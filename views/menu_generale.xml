@@ -1,0 +1,11 @@
+<odoo>
+   <!-- Menu Principal -->
+    <menuitem id="menu_fiche_borderreau_root"
+              name="GESTION DES BORDEREAUX"
+              sequence="5"
+
+    />
+
+    <!-- Sous-menu -->
+    <menuitem id="menu_fiche_bordereaux" name="Fiches de Bordereau" parent="menu_fiche_borderreau_root" action="action_fiche_bordereau"/>
+</odoo>
